@@ -193,7 +193,7 @@
   initials: "PG",
   role: "Web Development",
   bio: "Building thoughtful digital experiences that help ambitious businesses grow.",
-  image: "http://127.0.0.1:3000/images/paradise.png"
+  image: "images/paradise.png"
 },
   {
     id: "wisdom-ubuara",
@@ -201,7 +201,7 @@
     initials: "WU",
     role: "Cybersecurity",
     bio: "Building a safer space for teams to create, serve, and scale without fear.",
-    image: "http://127.0.0.1:3000/images/jahcares.jpeg"
+    image: "images/jahcares.jpg"
   },
   {
     id: "praise-jah-george",
@@ -209,15 +209,15 @@
     initials: "PJ",
     role: "Web Development",
     bio: "Creating seamless digital interactions that drive fast-growing businesses forward.",
-    image: "http://127.0.0.1:3000/images/praise.png"
+    image: "images/praise.png"
   },
   {
     id: "joseph-ubuara",
     name: "Joseph Ubuara",
     initials: "JU",
-    role: "Cybersecurity",
-    bio: "Helping teams protect their products, customers and digital future.",
-    image: "http://127.0.0.1:3000/images/Joseph.png"
+    role: "Web Development",
+    bio: "Connecting customers to your business with zero friction.",
+    image: "images/Joseph.png"
   }
 ];
 
