@@ -41,7 +41,6 @@ body {
 }
 main {
   flex: 1;
-  
   outline: none;
 }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote {
@@ -97,7 +96,6 @@ img, svg {
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
-  
 }
 @media (min-width: 640px) {
   .container { padding: 0 32px; }
@@ -607,7 +605,6 @@ img, svg {
   overflow: hidden;
   background: var(--navy);
   color: #fff;
-  padding-left: 50px;
 }
 .hero-bg {
   position: absolute;
@@ -621,11 +618,12 @@ img, svg {
   display: grid;
   align-items: center;
   gap: 40px;
-  padding: 64px 0;
+  /* NEW: keep the home hero copy clear of the viewport edges. */
+  padding: 64px 28px;
 }
-@media (min-width: 640px) { .hero-grid { padding: 80px 0; } }
+@media (min-width: 640px) { .hero-grid { padding: 80px 44px; } }
 @media (min-width: 1024px) {
-  .hero-grid { grid-template-columns: 1.02fr 0.98fr; gap: 24px; padding: 96px 0; }
+  .hero-grid { grid-template-columns: 1.02fr 0.98fr; gap: 24px; padding: 96px 64px; }
 }
 .status-chip {
   display: inline-flex;
@@ -702,6 +700,7 @@ img, svg {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
 }
+/* NEW: shared left/right inset for every inner-page hero. */
 .page-hero-inner { position: relative; padding: 64px 28px; }
 @media (min-width: 640px) { .page-hero-inner { padding: 80px 44px; } }
 @media (min-width: 1024px) { .page-hero-inner { padding: 96px 64px; } }
@@ -1384,25 +1383,6 @@ img, svg {
   filter: blur(24px);
 }
 .team-crown { position: absolute; right: 12px; top: 12px; width: 16px; height: 16px; color: rgba(255, 255, 255, 0.7); z-index: 2; }
-.team-linkedin {
-  position: absolute;
-  right: 12px; bottom: 12px;
-  z-index: 2;
-  display: flex;
-  width: 36px; height: 36px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: #fff;
-  color: var(--brand);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: all 0.3s ease;
-}
-.team-linkedin svg { width: 16px; height: 16px; }
-.team-card:hover .team-linkedin { opacity: 1; transform: none; }
-.team-linkedin:hover { background: var(--brand); color: #fff; }
 .team-grid { max-width: 56rem; margin-left: auto; margin-right: auto; }
 .team-hover {
   position: absolute;
@@ -1419,24 +1399,6 @@ img, svg {
   transition: opacity .25s ease;
 }
 .team-card:hover .team-hover, .team-card:focus-within .team-hover { opacity: 1; }
-.photo-change {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255,255,255,.6);
-  border-radius: 999px;
-  padding: 8px 14px;
-  background: rgba(11,18,32,.72);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: background .2s, border-color .2s;
-}
-.photo-change:hover { background: var(--brand); border-color: var(--electric); }
-.photo-change svg { width: 14px; height: 14px; }
-.photo-change input { display: none; }
 .team-socials { display: flex; justify-content: center; gap: 8px; }
 .team-socials a {
   display: flex;
@@ -1911,6 +1873,30 @@ details.mini-faq p { margin-top: 16px; font-size: 15px; line-height: 1.7; color:
   background: rgba(239, 246, 255, 0.6);
   padding: 48px;
   text-align: center;
+}
+
+/* NEW: School Training promo, lessons and editable enquiry form. */
+.school-promo { padding: 28px 0; background: var(--ice); border-bottom: 1px solid rgba(37,99,235,.12); }
+.school-promo-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.school-promo-copy { max-width: 52rem; }
+.school-promo-title { font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--navy); }
+.school-promo-text { margin-top:6px; font-size:14px; line-height:1.6; color:var(--slate-600); }
+.school-program-grid { display:grid; gap:36px; margin-top:56px; }
+@media (min-width: 768px) { .school-program-grid { grid-template-columns:repeat(2,1fr); gap:48px; } }
+.school-program { border-top:1px solid rgba(59,130,246,.3); padding-top:24px; }
+.school-program h3 { margin-top:20px; font-family:var(--font-display); font-size:22px; font-weight:700; color:#fff; }
+.school-program p { margin-top:10px; max-width:34rem; font-size:15px; line-height:1.7; color:var(--slate-300); }
+.school-enquiry-layout { display:grid; gap:40px; align-items:start; }
+@media (min-width: 1024px) { .school-enquiry-layout { grid-template-columns:.78fr 1.22fr; gap:56px; } }
+.school-form-card { border:1px solid var(--line); border-radius:24px; background:#fff; padding:24px; box-shadow:0 35px 70px -42px rgba(37,99,235,.4); }
+@media (min-width: 640px) { .school-form-card { padding:36px; } }
+.school-form-grid { display:grid; gap:0 18px; }
+@media (min-width: 640px) { .school-form-grid { grid-template-columns:1fr 1fr; } }
+.school-status { margin-top:16px; border-radius:12px; background:var(--ice); padding:14px 16px; color:var(--deep); font-size:14px; line-height:1.6; }
+.school-status a { color:var(--brand); font-weight:700; text-decoration:underline; text-underline-offset:3px; }
+@media (max-width: 639px) {
+  .school-promo-inner { align-items:flex-start; flex-direction:column; }
+  .school-promo-inner .btn { width:100%; }
 }
 
 /* ---------- Reduced motion ---------- */

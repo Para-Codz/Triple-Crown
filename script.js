@@ -185,6 +185,7 @@
       tags: ["React", "Stripe", "Video DRM"]
     }
   ];
+  
   var team = [
   {
   id: "paradise-george",
@@ -876,7 +877,16 @@
       </div>
     </div>`
     );
-    return hero + stackMarquee() + pillarsHTML + duo + processSec + featured + why + ctaBand({ tone: "ice" });
+    // NEW: homepage entry point for the secondary-school training program.
+    const schoolPromo = `<section class="school-promo"><div class="container school-promo-inner">
+      <div class="school-promo-copy">
+        <span class="eyebrow">Triple Crown in Schools</span>
+        <h2 class="school-promo-title">Bringing web development and cybersecurity to secondary schools.</h2>
+        <p class="school-promo-text">Practical, student-friendly sessions that introduce learners to building for the web and staying safer online.</p>
+      </div>
+      ${btn("#/school-training", "Explore school training", { variant: "outline", arrow: true })}
+    </div></section>`;
+    return hero + schoolPromo + stackMarquee() + pillarsHTML + duo + processSec + featured + why + ctaBand({ tone: "ice" });
   }
   function AboutPage() {
     const pillars = [
@@ -1134,7 +1144,7 @@
       `<div class="two-col">
         <div>
           ${sectionHead({ eyebrow: "Penetration testing", title: "Real attacks, real evidence, real fixes.", desc: "Automated scanners find the obvious. Our testers chain subtle flaws into real-world attack paths — then show you exactly how to close them." })}
-          <div style="margin-top:32px">${checkList(["Manual testing led by OSCP-certified experts", "Web, API, mobile, cloud and internal network", "Executive summary plus developer-ready remediation steps", "Free retest to verify every fix"])}</div>
+          <div style="margin-top:32px">${checkList(["Manual testing led by experienced ethical hackers", "Web, API, mobile, cloud and internal network", "Executive summary plus developer-ready remediation steps", "Free retest to verify every fix"])}</div>
           <div style="margin-top:36px;max-width:28rem">
             ${findings.map(
         ([l, n]) => `<div class="finding-row">
@@ -1271,7 +1281,6 @@
     ) + ctaBand({ tone: "ice" });
   }
   function TeamPage() {
-    const certs = ["OSCP", "CISSP", "CEH", "CISM", "AWS Security Specialty", "Azure Security Engineer", "GIAC GWAPT"];
     const culture = [
       { icon: "award", title: "Craft over speed", text: "We'd rather ship something we're proud of than something merely finished." },
       { icon: "users", title: "Radical collaboration", text: "Designers, engineers and hackers pair up and challenge each other early." },
@@ -1283,47 +1292,37 @@
       label: "Our Team",
       eyebrow: "Our team",
       title: `The people behind <span class="text-gradient">the crown.</span>`,
-      desc: "A senior, multidisciplinary team of engineers, designers and ethical hackers who genuinely love what they do — and have the certifications and battle scars to prove it.",
+      desc: "A focused team of web development and cybersecurity specialists who genuinely love helping people build safer digital skills.",
       actions: `${btn("#/contact", "Work with us", { size: "lg", arrow: true })}${btn("#/about", "Our story", { variant: "secondary", size: "lg" })}`
     }) + section(
       "",
       `${sectionHead({ center: true, eyebrow: "Leadership & specialists", title: "Meet the experts on your project.", desc: "Every engagement is led by senior specialists you'll actually speak to." })}
       <div class="grid-2 mt-14 team-grid" style="gap:24px">
         ${team.map(
-  (m, i) => `<article class="team-card">
-    <div class="team-photo">
-      <img
-        class="team-image"
-        src="${m.image}"
-        alt="${m.name}"
-      />
-
-      <div class="team-hover">
-        <div class="team-socials">
-          <a href="https://x.com/" target="_blank" rel="noreferrer" aria-label="${m.name} on X">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.2l-4.9-6.4L6.5 22H3.4l7.2-8.2L2.8 2H9l4.4 5.8L18.9 2Zm-1.1 17.8h1.7L8.3 4.1H6.5l11.3 15.7Z"/>
-            </svg>
-          </a>
-
-          <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" aria-label="${m.name} on TikTok">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M19.6 6.4a5.2 5.2 0 0 1-3.3-1.2 5.1 5.1 0 0 1-1.7-3.1H11v13.3a2.4 2.4 0 1 1-2.4-2.4c.4 0 .8.1 1.1.2V9.8c-.4-.1-.8-.1-1.2-.1a6.2 6.2 0 1 0 6.2 6.2V8.2c1.4 1 3.1 1.6 5 1.6V6.4Z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="team-body">
-      <h3 class="team-name">${m.name}</h3>
-      <div class="team-role">${m.role}</div>
-      <p class="team-bio">${m.bio}</p>
-    </div>
-  </article>`
-).join("")}
+        (m, i) => `<article class="team-card">
+              <div class="team-photo">
+                <img class="team-image" data-team-image="${m.id}" src="${m.image}" alt="${m.name}" loading="lazy" />
+                <div class="avatar av-${i} team-fallback" aria-hidden="true"><span>${m.initials}</span></div>
+                <div class="team-hover">
+                  <div class="team-socials">
+                    <a href="https://x.com/" target="_blank" rel="noreferrer" aria-label="${m.name} on Twitter">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 5.9c-.7.3-1.5.6-2.4.7a4.1 4.1 0 0 0 1.8-2.3 8 8 0 0 1-2.6 1 4.1 4.1 0 0 0-7 3.7 11.7 11.7 0 0 1-8.5-4.3 4.1 4.1 0 0 0 1.3 5.5 4 4 0 0 1-1.9-.5v.1a4.1 4.1 0 0 0 3.3 4 4 4 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.4a11.6 11.6 0 0 0 17.9-9.8v-.5A8.3 8.3 0 0 0 22 5.9Z" /></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" aria-label="${m.name} on TikTok">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 6.4a5.2 5.2 0 0 1-3.3-1.2 5.1 5.1 0 0 1-1.7-3.1H11v13.3a2.4 2.4 0 1 1-2.4-2.4c.4 0 .8.1 1.1.2V9.8c-.4-.1-.8-.1-1.2-.1a6.2 6.2 0 1 0 6.2 6.2V8.2c1.4 1 3.1 1.6 5 1.6V6.4Z" /></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="team-body">
+                <h3 class="team-name">${m.name}</h3>
+                <div class="team-role">${m.role}</div>
+                <p class="team-bio">${m.bio}</p>
+              </div>
+            </article>`
+      ).join("")}
       </div>`
-    )  + section(
+    ) + section(
       "dark",
       `${sectionHead({ dark: true, center: true, eyebrow: "How we work together", title: "A culture built on craft and care." })}
       <div class="grid-4 grid-4-md2 mt-14" style="gap:20px">
@@ -1501,6 +1500,110 @@
       <div style="margin-top:40px;text-align:center">${textLink("#/faq", "Have a quick question? Read our FAQ")}</div>`
     );
   }
+
+  /* NEW: School Training page. Edit the state list, program labels and form copy here. */
+  function SchoolTrainingPage() {
+    const states = [
+      "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
+      "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "FCT - Abuja", "Gombe",
+      "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos",
+      "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers",
+      "Sokoto", "Taraba", "Yobe", "Zamfara"
+    ];
+    const stateOptions = states.map((state) => `<option value="${state}">${state}</option>`).join("");
+
+    return pageHero({
+      route: "school-training",
+      label: "School Training",
+      eyebrow: "Triple Crown in Schools",
+      title: `Helping secondary-school students <span class="text-gradient">build and stay safe online.</span>`,
+      desc: "We bring practical web development and cybersecurity sessions to secondary schools, giving students a friendly first step into useful digital skills.",
+      actions: `<a href="#school-enquiry" data-scroll-target="school-enquiry" class="btn btn-primary btn-lg">Enquire for your school ${icon("arrow-right", "arr")}</a>${btn("#/contact", "Contact Triple Crown", { variant: "secondary", size: "lg" })}`
+    }) +
+    section(
+      "dark",
+      `${sectionHead({ dark: true, center: true, eyebrow: "Learning pathways", title: "Choose one pathway or bring both to your school.", desc: "Sessions are designed for secondary-school learners and can be adapted to the students' age and experience." })}
+      <div class="school-program-grid">
+        <article class="school-program">
+          ${iconBox("code", { dark: true })}
+          <h3>Web Development</h3>
+          <p>Students learn how websites are made, explore HTML, CSS and JavaScript, and finish with a simple page or project of their own.</p>
+        </article>
+        <article class="school-program">
+          ${iconBox("shield", { dark: true, cyan: true })}
+          <h3>Cybersecurity</h3>
+          <p>Students learn safer online habits, privacy basics, common digital threats and responsible ways to protect accounts and information.</p>
+        </article>
+      </div>`,
+    ) +
+    section(
+      "ice",
+      `<div class="school-enquiry-layout" id="school-enquiry">
+        <div>
+          ${sectionHead({ eyebrow: "School enquiry", title: "Tell us about your school.", desc: "Complete the form and we'll open WhatsApp with your enquiry addressed to our school-training team." })}
+          <div style="margin-top:28px">${checkList(["Sessions for Nigerian secondary schools", "Choose web development, cybersecurity or both", "Practical, age-appropriate learning", "Direct follow-up through WhatsApp"])}</div>
+        </div>
+        <div class="school-form-card">
+          <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--navy)">Request school training</h2>
+          <p style="margin-top:8px;font-size:14px;color:var(--slate-500)">Fields marked * are required.</p>
+          <form id="schoolTrainingForm" style="margin-top:8px">
+            <div class="school-form-grid">
+              <div class="field">
+                <label for="school-contact-name">Contact person's name *</label>
+                <input class="input" id="school-contact-name" name="contactName" autocomplete="name" required placeholder="Your full name" />
+              </div>
+              <div class="field">
+                <label for="school-country">Country *</label>
+                <select class="input" id="school-country" name="country" required>
+                  <option value="Nigeria" selected>Nigeria</option>
+                  <option value="Ghana">Ghana</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="school-state">State / FCT *</label>
+                <select class="input" id="school-state" name="state" required>
+                  <option value="" selected disabled>Select state or FCT</option>
+                  ${stateOptions}
+                  <option value="Other / not listed">Other / not listed</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="school-name">School name *</label>
+                <input class="input" id="school-name" name="schoolName" required placeholder="Name of secondary school" />
+              </div>
+              <div class="field">
+                <label for="school-program">Training program *</label>
+                <select class="input" id="school-program" name="program" required>
+                  <option value="" selected disabled>Select a program</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                  <option value="Both Web Development and Cybersecurity">Both Web Development and Cybersecurity</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="school-phone">Phone number *</label>
+                <input class="input" id="school-phone" name="phone" type="tel" autocomplete="tel" required placeholder="08085034062" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="margin-top:24px;width:100%">
+              Send enquiry on WhatsApp ${icon("arrow-right", "arr")}
+            </button>
+            <div class="school-status" id="schoolTrainingStatus" role="status" aria-live="polite" hidden></div>
+          </form>
+        </div>
+      </div>`,
+    ) +
+    ctaBand({
+      tone: "white",
+      title: "Let's bring practical digital skills to your students.",
+      desc: "Send a school enquiry and we'll follow up on WhatsApp to discuss the right session for your students.",
+      primary: "Enquire for your school",
+      secondary: { href: "#/about", label: "Learn about Triple Crown" }
+    });
+  }
+
   var FAQ_CATS = ["All", "General", "Web Development", "Cybersecurity", "Pricing & Process"];
   function faqItemsHTML(list, openQ) {
     if (!list.length) {
@@ -1568,6 +1671,7 @@
     team: "Our Team | Triple Crown",
     testimonials: "Testimonials | Triple Crown",
     contact: "Contact | Triple Crown",
+    "school-training": "School Training | Triple Crown",
     faq: "FAQ | Triple Crown"
   };
   var PAGES = {
@@ -1581,6 +1685,7 @@
     team: TeamPage,
     testimonials: TestimonialsPage,
     contact: ContactPage,
+    "school-training": SchoolTrainingPage,
     faq: FAQPage
   };
   var main = document.getElementById("main");
@@ -1615,6 +1720,8 @@
     if (route === "testimonials") bindTestimonials();
     if (route === "faq") bindFAQ();
     if (route === "contact") bindContact();
+    if (route === "school-training") bindSchoolTraining();
+    if (route === "team") bindTeamPhotos();
   }
   function markActiveNav(route) {
     document.querySelectorAll("[data-nav]").forEach((el) => {
@@ -1858,6 +1965,60 @@
     });
   }
 
+  /* NEW: send school-training requests to the school WhatsApp contact. */
+  function bindSchoolTraining() {
+    const form = document.getElementById("schoolTrainingForm");
+    const status = document.getElementById("schoolTrainingStatus");
+    if (!form || !status) return;
+
+    // NEW: scroll within this hash-routed page without changing the route hash.
+    main.querySelectorAll("[data-scroll-target]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        document.getElementById(link.dataset.scrollTarget)?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const values = new FormData(form);
+      const message = [
+        "Hello Triple Crown, I am enquiring about secondary-school training.",
+        `Contact person: ${values.get("contactName")}`,
+        `Country: ${values.get("country")}`,
+        `State / FCT: ${values.get("state")}`,
+        `School: ${values.get("schoolName")}`,
+        `Program: ${values.get("program")}`,
+        `Phone: ${values.get("phone")}`
+      ].join("\n");
+
+      // NEW: edit this destination if the school-training WhatsApp number changes.
+      const whatsappUrl = `https://wa.me/2348085034062?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      status.innerHTML = `WhatsApp is ready with your enquiry. Tap Send in WhatsApp to complete it. <a href="${whatsappUrl}" target="_blank" rel="noreferrer">Open WhatsApp again</a>`;
+      status.hidden = false;
+    });
+  }
+
+  function bindTeamPhotos() {
+    document.querySelectorAll("[data-team-image]").forEach((img) => {
+      const fallback = img.parentElement.querySelector(".team-fallback");
+      img.addEventListener("load", () => {
+        img.hidden = false;
+        if (fallback) fallback.hidden = true;
+      });
+      img.addEventListener("error", () => {
+        img.hidden = true;
+        if (fallback) fallback.hidden = false;
+      });
+      if (img.complete && img.naturalWidth > 0) {
+        img.hidden = false;
+        if (fallback) fallback.hidden = true;
+      }
+    });
+  }
   window.addEventListener("hashchange", render);
   render();
 })();
