@@ -41,6 +41,7 @@ body {
 }
 main {
   flex: 1;
+  
   outline: none;
 }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote {
@@ -96,6 +97,7 @@ img, svg {
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
+  
 }
 @media (min-width: 640px) {
   .container { padding: 0 32px; }
@@ -605,6 +607,7 @@ img, svg {
   overflow: hidden;
   background: var(--navy);
   color: #fff;
+  padding-left: 50px;
 }
 .hero-bg {
   position: absolute;
