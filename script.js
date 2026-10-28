@@ -217,7 +217,7 @@
     initials: "JU",
     role: "Web Development",
     bio: "Connecting customers to your business with zero friction.",
-    image: "images/Joseph.png"
+    image: "images/joseph.png"
   }
 ];
 
