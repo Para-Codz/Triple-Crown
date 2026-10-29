@@ -217,7 +217,7 @@
     initials: "JA",
     role: "Web Development",
     bio: "Connecting customers to your business with zero friction.",
-    image: "images/joseph.png"
+    image: "images/joseph.jpg"
   }
 ];
 
