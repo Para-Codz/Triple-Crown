@@ -1301,8 +1301,13 @@
         ${team.map(
         (m, i) => `<article class="team-card">
               <div class="team-photo">
-                // <img class="team-image" data-team-image="${m.id}" src="${m.image}" alt="${m.name}" loading="lazy" />
-                <div class="avatar av-${i} team-fallback" aria-hidden="true"><span>${m.initials}</span></div>
+<img
+  class="team-image"
+  data-team-image="${m.id}"
+  src="${m.image}"
+  alt="${m.name}"
+  loading="lazy"
+/>                <div class="avatar av-${i} team-fallback" aria-hidden="true"><span>${m.initials}</span></div>
                 <div class="team-hover">
                   <div class="team-socials">
                     <a href="https://x.com/" target="_blank" rel="noreferrer" aria-label="${m.name} on Twitter">
