@@ -213,8 +213,8 @@
   },
   {
     id: "joseph-ubuara",
-    name: "Joseph Ubuara",
-    initials: "JU",
+    name: "Joseph Ayomi",
+    initials: "JA",
     role: "Web Development",
     bio: "Connecting customers to your business with zero friction.",
     image: "images/joseph.png"
@@ -1301,7 +1301,7 @@
         ${team.map(
         (m, i) => `<article class="team-card">
               <div class="team-photo">
-                <img class="team-image" data-team-image="${m.id}" src="${m.image}" alt="${m.name}" loading="lazy" />
+                // <img class="team-image" data-team-image="${m.id}" src="${m.image}" alt="${m.name}" loading="lazy" />
                 <div class="avatar av-${i} team-fallback" aria-hidden="true"><span>${m.initials}</span></div>
                 <div class="team-hover">
                   <div class="team-socials">
